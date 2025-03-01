@@ -7,17 +7,14 @@
     <div v-else>
         <h1>Not logged in</h1>
         <a href="/auth/github">Login with GitHub</a>
-        <!-- or open the OAuth route in a popup -->
         <button @click="openInPopup('/auth/github')">Login with GitHub</button>
     </div>
 </template>
 
-<script>
+<script lang="ts" setup>
 const { loggedIn, user, session, fetch, clear, openInPopup } = useUserSession()
-export default {
-    name: "Login"
-}
-.useHead({
+
+useHead({
     title: "Login Page"
 })
 </script>
