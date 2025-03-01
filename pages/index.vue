@@ -2,10 +2,10 @@
 
 </template>
 
-<script>
+<script lang="ts" setup>
 useHead({
     title: "Home Page"
-})
+});
 </script>
 
 <style scoped>
