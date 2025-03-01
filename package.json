@@ -19,6 +19,7 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "prisma": "^6.4.1"
   }
 }
