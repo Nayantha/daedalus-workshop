@@ -1,12 +1,13 @@
 import bcrypt from "bcrypt";
 import prisma from "~/lib/prisma";
 import { H3Event } from "h3";
+import { RegisterDTO } from "~/types/User";
 
 const SALT_ROUNDS = 10;
 
 export default defineEventHandler(async (event: H3Event) => {
     try {
-        const body = await readBody(event);
+        const body = await readBody(event) as RegisterDTO;
 
         if (!body) {
             createError({
