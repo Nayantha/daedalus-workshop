@@ -101,6 +101,7 @@
 <script lang="ts" setup>
 import * as yup from 'yup';
 import { useField, useForm } from "vee-validate";
+import type { RegisterDTO } from "~/types/User";
 
 const schema = yup.object({
     name: yup.string().required('Name is required'),
@@ -137,7 +138,7 @@ const { value: phone } = useField('phone');
 const { value: confirmPassword } = useField('confirmPassword');
 const { value: password } = useField('password');
 
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = handleSubmit(async (values : RegisterDTO) => {
 
     try {
         loading.value = true
@@ -153,18 +154,13 @@ const onSubmit = handleSubmit(async (values) => {
 
         if (!response.ok) {
             const data = await response.json();
-
             error.value = data.message || 'Registration failed';
-
             if (response.status === 409) {
                 error.value = 'An account with this email already exists';
             }
-
             return;
         }
-
         // const data = await response.json();
-
         success.value = true;
         resetForm()
         // await navigateTo('/');
