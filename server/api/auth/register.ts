@@ -50,12 +50,12 @@ export default defineEventHandler(async (event: H3Event) => {
         // @ts-ignore
         if (error.code === "P2002") {
             return  createError({
-                statusCode: 400,
+                statusCode: 409,
                 statusMessage: "Email already exists.",
             });
         }
         return createError({
-            statusCode: 500,
+            statusCode: 400,
             statusMessage: "Failed to process request",
         });
     }
