@@ -14,12 +14,20 @@ export default defineEventHandler(async (event: H3Event) => {
                 message: "Request body is empty or undefined"
             });
         }
-        const {email, name, password} = body;
+        const {email, name, password, confirmPassword} = body;
 
         if (!email || !name || !password) {
             createError({
                 statusCode: 401,
                 message: "Required fields are empty."
+            });
+        }
+
+        // Check if password matches confirmation (if required)
+        if (password !== confirmPassword) {
+            return createError({
+                statusCode: 400,
+                message: "Password and confirmation do not match"
             });
         }
 
