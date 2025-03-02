@@ -174,4 +174,8 @@ const onSubmit = handleSubmit(async (values) => {
         loading.value = false
     }
 })
+
+useHead({
+    title: "Register Page"
+})
 </script>
