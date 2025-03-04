@@ -17,15 +17,32 @@ model User {
 }
 
 model Item {
-  id            Int      @id @default(autoincrement())
+  id            Int          @id @default(autoincrement())
   name          String
   description   String
   price         Float
-  rarity        Rarity   @default(Common)
-  rate          Rate     @default(F)
-  requiredLevel Int      @default(1)
+  rarity        Rarity       @default(Common)
+  rate          Rate         @default(F)
+  requiredLevel Int          @default(1)
   itemType      ItemType
-  createdAt     DateTime @default(now())
+  createdAt     DateTime     @default(now())
+  tags          TagsOnItem[]
+}
+
+// Tagging system for filters
+model Tag {
+  id    Int          @id @default(autoincrement())
+  name  String       @unique
+  items TagsOnItem[]
+}
+
+model TagsOnItem {
+  item   Item @relation(fields: [itemId], references: [id])
+  tag    Tag  @relation(fields: [tagId], references: [id])
+  itemId Int
+  tagId  Int
+
+  @@id([itemId, tagId])
 }
 
 enum Rarity {
