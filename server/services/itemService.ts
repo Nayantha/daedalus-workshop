@@ -8,6 +8,7 @@ interface FetchItemsParams {
     minPrice?: number;
     maxPrice?: number;
     rarity?: string;
+    tags?: string | string[]
 }
 
 export const fetchItems = async ({
@@ -17,6 +18,7 @@ export const fetchItems = async ({
                                      minPrice,
                                      maxPrice,
                                      rarity,
+                                     tags,
                                  }: FetchItemsParams) => {
     const itemsToSkip = (page - 1) * pageSize;
     const noItemsPerPage = pageSize;
@@ -26,6 +28,19 @@ export const fetchItems = async ({
         ...(minPrice && { price: { gte: minPrice } }),
         ...(maxPrice && { price: { lte: maxPrice } }),
         ...(rarity && { rarity: rarity }),
+        ...(tags && {
+            tags: {
+                some: {
+                    tag: {
+                        name: {
+                            in: Array.isArray(tags)
+                                ? tags
+                                : [tags]
+                        }
+                    }
+                }
+            }
+        })
     } as Prisma.ItemWhereInput;
 
     const items = await prisma.item.findMany({

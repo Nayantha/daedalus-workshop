@@ -19,9 +19,10 @@ const name = route.query.name as string;
 const minPrice = parseFloat(route.query.minPrice as string);
 const maxPrice = parseFloat(route.query.maxPrice as string);
 const rarity = route.query.rarity as string;
+const tags = route.query.tags as string | string[];
 
 const { data, error } = await useFetch('/api/items',
-    { params: { page, pageSize, name, minPrice, maxPrice, rarity } }
+    { params: { page, pageSize, name, minPrice, maxPrice, rarity, tags } }
 );
 const {
     items,
