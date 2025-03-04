@@ -15,13 +15,13 @@ const route = useRoute();
 
 const page = parseInt(route.query.page as string) || 1;
 const pageSize = parseInt(route.query.pageSize as string) || 10;
-const filterName = route.query.filterName as string;
+const name = route.query.name as string;
 const minPrice = parseFloat(route.query.minPrice as string);
 const maxPrice = parseFloat(route.query.maxPrice as string);
-const rarity = route.query.filterRarity as string;
+const rarity = route.query.rarity as string;
 
 const { data, error } = await useFetch('/api/items',
-    { params: { page, pageSize, filterName, minPrice, maxPrice, rarity } }
+    { params: { page, pageSize, name, minPrice, maxPrice, rarity } }
 );
 const {
     items,
