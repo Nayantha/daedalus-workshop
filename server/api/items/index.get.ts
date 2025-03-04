@@ -6,7 +6,7 @@ export default defineEventHandler(async (event: H3Event) => {
         const query = getQuery(event);
         const page = parseInt(query.page as string) || 1;
         const pageSize = parseInt(query.pageSize as string) || 10;
-        const filterName = query.filterName as string;
+        const name = query.filterName as string;
         const minPrice = parseFloat(query.minPrice as string);
         const maxPrice = parseFloat(query.maxPrice as string);
         const rarity = query.rarity as string;
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event: H3Event) => {
         const { items, totalItems } = await fetchItems({
             page,
             pageSize,
-            filterName,
+            name,
             minPrice,
             maxPrice,
             rarity,
