@@ -8,7 +8,7 @@ interface FetchItemsParams {
     minPrice?: number;
     maxPrice?: number;
     rarity?: string;
-    tags?: string | string[]
+    tags?: string[]
 }
 
 export const fetchItems = async ({
@@ -33,9 +33,7 @@ export const fetchItems = async ({
                 some: {
                     tag: {
                         name: {
-                            in: Array.isArray(tags)
-                                ? tags
-                                : [tags]
+                            in: tags
                         }
                     }
                 }
