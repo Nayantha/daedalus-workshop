@@ -1,12 +1,9 @@
-import { ItemType, MaterialType, Rarity, WeaponType, WearableSlot } from '@prisma/client';
+import { ItemType, Rarity } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 import prisma from "~/lib/prisma";
 
 const RARITIES = Object.values(Rarity);
 const ITEM_TYPES = Object.values(ItemType);
-const WEAPON_TYPES = Object.values(WeaponType);
-const SLOTS = Object.values(WearableSlot);
-const MATERIAL_TYPES = Object.values(MaterialType);
 
 export async function main() {
     // Create Tags
