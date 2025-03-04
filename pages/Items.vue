@@ -20,9 +20,12 @@ const minPrice = parseFloat(route.query.minPrice as string);
 const maxPrice = parseFloat(route.query.maxPrice as string);
 const filterRarity = route.query.filterRarity as string;
 
-const { data: items, error } = await useFetch('/api/items',
+const { data, error } = await useFetch('/api/items',
     { params: { page, pageSize, filterName, minPrice, maxPrice, filterRarity } }
 );
+const {
+    items,
+} = data.value || {};
 </script>
 
 <style scoped>
