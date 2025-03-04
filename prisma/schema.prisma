@@ -27,6 +27,11 @@ model Item {
   itemType      ItemType
   createdAt     DateTime     @default(now())
   tags          TagsOnItem[]
+
+  @@index([price])
+  @@index([rarity])
+  @@index([requiredLevel])
+  @@index([itemType])
 }
 
 // Tagging system for filters
