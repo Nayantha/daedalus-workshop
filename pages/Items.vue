@@ -11,7 +11,18 @@
 </template>
 
 <script lang="ts" setup>
-const { data: items, error } = await useFetch('/api/items');
+const route = useRoute();
+
+const page = parseInt(route.query.page as string) || 1;
+const pageSize = parseInt(route.query.pageSize as string) || 10;
+const filterName = route.query.filterName as string;
+const minPrice = parseFloat(route.query.minPrice as string);
+const maxPrice = parseFloat(route.query.maxPrice as string);
+const filterRarity = route.query.filterRarity as string;
+
+const { data: items, error } = await useFetch('/api/items',
+    { params: { page, pageSize, filterName, minPrice, maxPrice, filterRarity } }
+);
 </script>
 
 <style scoped>
