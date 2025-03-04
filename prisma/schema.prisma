@@ -15,3 +15,15 @@ model User {
   salt      String
   createdAt DateTime @default(now())
 }
+
+model Item {
+  id            Int      @id @default(autoincrement())
+  name          String
+  description   String
+  price         Float
+  rarity        Rarity   @default(Common)
+  rate          Rate     @default(F)
+  requiredLevel Int      @default(1)
+  itemType      ItemType
+  createdAt     DateTime @default(now())
+}
