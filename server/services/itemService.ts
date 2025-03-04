@@ -41,31 +41,35 @@ export const fetchItems = async ({
         })
     } as Prisma.ItemWhereInput;
 
-    const items = await prisma.item.findMany({
-        skip: itemsToSkip,
-        take: noItemsPerPage,
-        where,
-        include: {
-            tags: {
-                select: {
-                    tag: {
-                        select: {
-                            id: true,
-                            name: true
+    try {
+        const items = await prisma.item.findMany({
+            skip: itemsToSkip,
+            take: noItemsPerPage,
+            where,
+            include: {
+                tags: {
+                    select: {
+                        tag: {
+                            select: {
+                                id: true,
+                                name: true
+                            }
                         }
                     }
                 }
-            }
-        },
-    });
+            },
+        });
+        // convert tag and item to tag and its name
+        items.map(item => ({
+            ...item,
+            tags: item.tags.map(tagOnItem => tagOnItem.tag)
+        }));
 
-    // convert tag and item to tag and its name
-    items.map(item => ({
-        ...item,
-        tags: item.tags.map(tagOnItem => tagOnItem.tag)
-    }));
+        const totalItems = await prisma.item.count({ where });
 
-    const totalItems = await prisma.item.count({ where });
-
-    return { items, totalItems };
+        return { items, totalItems };
+    } catch (error) {
+        console.error(error);
+        return { items: {}, totalItems: 0 };
+    }
 };
