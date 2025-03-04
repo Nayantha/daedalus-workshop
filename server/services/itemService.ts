@@ -30,10 +30,12 @@ export const fetchItems = async ({
         ...(rarity && { rarity: rarity }),
         ...(tags && {
             tags: {
-                some: {
+                every: {
                     tag: {
                         name: {
-                            in: tags
+                            in: Array.isArray(tags)
+                                ? tags
+                                : [tags]
                         }
                     }
                 }
