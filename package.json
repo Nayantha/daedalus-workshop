@@ -7,9 +7,13 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "seed": "npx ts-node prisma/seed.ts",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate dev --name init"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.5.1",
     "@pinia/nuxt": "^0.10.1",
     "@prisma/nuxt": "^0.3.0",
     "bcrypt": "^5.1.1",
@@ -23,6 +27,9 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
-    "prisma": "^6.4.1"
+    "prisma": "^6.4.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
   }
 }
