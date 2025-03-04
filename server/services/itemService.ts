@@ -4,7 +4,7 @@ import prisma from "~/lib/prisma"
 interface FetchItemsParams {
     page?: number;
     pageSize?: number;
-    filterName?: string;
+    name?: string;
     minPrice?: number;
     maxPrice?: number;
     rarity?: string;
@@ -13,7 +13,7 @@ interface FetchItemsParams {
 export const fetchItems = async ({
                                      page = 1,
                                      pageSize = 10,
-                                     filterName,
+                                     name,
                                      minPrice,
                                      maxPrice,
                                      rarity,
@@ -22,7 +22,7 @@ export const fetchItems = async ({
     const noItemsPerPage = pageSize;
 
     const where = {
-        ...(filterName && { name: { contains: filterName, mode: 'insensitive' } }),
+        ...(name && { name: { contains: name, mode: 'insensitive' } }),
         ...(minPrice && { price: { gte: minPrice } }),
         ...(maxPrice && { price: { lte: maxPrice } }),
         ...(rarity && { rarity: rarity }),
