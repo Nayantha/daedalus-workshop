@@ -36,15 +36,15 @@ export const fetchItems = async ({
         ...(maxPrice && { price: { lte: maxPrice } }),
         ...(rarity && { rarity: rarity }),
         ...(tags && {
-            tags: {
-                every: {
-                    tag: {
-                        name: {
-                            in: transformedTags
+            AND: transformedTags.map(tagName => ({
+                tags: {
+                    some: {
+                        tag: {
+                            name: tagName
                         }
                     }
                 }
-            }
+            }))
         })
     } as Prisma.ItemWhereInput;
 
