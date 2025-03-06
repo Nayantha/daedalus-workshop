@@ -8,7 +8,7 @@ interface FetchItemsParams {
     minPrice?: number;
     maxPrice?: number;
     rarity?: string;
-    tags?: string[]
+    tags?: string
 }
 
 export const fetchItems = async ({
