@@ -8,7 +8,8 @@ interface FetchItemsParams {
     minPrice?: number;
     maxPrice?: number;
     rarity?: string;
-    tags?: string
+    tags?: string;
+    useAllTags: boolean
 }
 
 function transformTagParamStringToArray(tagString: string | undefined) {
@@ -24,28 +25,33 @@ export const fetchItems = async ({
                                      maxPrice,
                                      rarity,
                                      tags,
+                                     useAllTags
                                  }: FetchItemsParams) => {
     const itemsToSkip = (page - 1) * pageSize;
     const noItemsPerPage = pageSize;
 
     const transformedTags = transformTagParamStringToArray(tags);
 
+    const tagNameFilters = transformedTags.map(tagName => ({
+        tags: {
+            some: {
+                tag: {
+                    name: tagName
+                }
+            }
+        }
+    }));
+
     const where = {
         ...(name && { name: { contains: name, mode: 'insensitive' } }),
         ...(minPrice && { price: { gte: minPrice } }),
         ...(maxPrice && { price: { lte: maxPrice } }),
         ...(rarity && { rarity: rarity }),
-        ...(tags && {
-            AND: transformedTags.map(tagName => ({
-                tags: {
-                    some: {
-                        tag: {
-                            name: tagName
-                        }
-                    }
-                }
-            }))
-        })
+        ...(tags && useAllTags
+                ?
+                { AND: tagNameFilters }
+                : { OR: tagNameFilters }
+        )
     } as Prisma.ItemWhereInput;
 
     try {
