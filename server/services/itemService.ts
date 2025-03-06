@@ -11,6 +11,11 @@ interface FetchItemsParams {
     tags?: string
 }
 
+function transformTagParamStringToArray(tagString: string | undefined) {
+    if (!tagString) return [];
+    return tagString.split(",");
+}
+
 export const fetchItems = async ({
                                      page = 1,
                                      pageSize = 10,
@@ -23,6 +28,8 @@ export const fetchItems = async ({
     const itemsToSkip = (page - 1) * pageSize;
     const noItemsPerPage = pageSize;
 
+    const transformedTags = transformTagParamStringToArray(tags);
+
     const where = {
         ...(name && { name: { contains: name, mode: 'insensitive' } }),
         ...(minPrice && { price: { gte: minPrice } }),
@@ -33,9 +40,7 @@ export const fetchItems = async ({
                 every: {
                     tag: {
                         name: {
-                            in: Array.isArray(tags)
-                                ? tags
-                                : [tags]
+                            in: transformedTags
                         }
                     }
                 }
