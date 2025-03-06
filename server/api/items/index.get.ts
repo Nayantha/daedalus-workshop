@@ -1,5 +1,5 @@
-import { H3Event } from "h3";
-import { fetchItems } from "~/server/services/itemService";
+import {H3Event} from "h3";
+import {fetchItems} from "~/server/services/itemService";
 
 export default defineEventHandler(async (event: H3Event) => {
     try {
@@ -10,7 +10,7 @@ export default defineEventHandler(async (event: H3Event) => {
         const minPrice = parseFloat(query.minPrice as string);
         const maxPrice = parseFloat(query.maxPrice as string);
         const rarity = query.rarity as string;
-        const tags = query.tags as string[];
+        const tags = query.tags as string;
 
         const { items, totalItems } = await fetchItems({
             page,
