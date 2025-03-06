@@ -1,5 +1,5 @@
-import {H3Event} from "h3";
-import {fetchItems} from "~/server/services/itemService";
+import { H3Event } from "h3";
+import { fetchItems } from "~/server/services/itemService";
 
 export default defineEventHandler(async (event: H3Event) => {
     try {
@@ -21,6 +21,13 @@ export default defineEventHandler(async (event: H3Event) => {
             rarity,
             tags
         });
+
+        if (totalItems === 0) {
+            return createError({
+                statusCode: 404,
+                message: "No Elements found."
+            })
+        }
 
         return {
             items,
