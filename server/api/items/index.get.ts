@@ -11,6 +11,7 @@ export default defineEventHandler(async (event: H3Event) => {
         const maxPrice = parseFloat(query.maxPrice as string);
         const rarity = query.rarity as string;
         const tags = query.tags as string;
+        const useAllTags = query.useAllTags === "true";
 
         const { items, totalItems } = await fetchItems({
             page,
@@ -19,7 +20,8 @@ export default defineEventHandler(async (event: H3Event) => {
             minPrice,
             maxPrice,
             rarity,
-            tags
+            tags,
+            useAllTags
         });
 
         if (totalItems === 0) {
