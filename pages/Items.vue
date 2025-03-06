@@ -2,6 +2,7 @@
     <div>
         {{ tags }}
         <div v-if="error">{{ error.message }}</div>
+        <div v-if="tagFetchError">{{ tagFetchError.message }}</div>
         <div v-else-if="!items">Loading...</div>
         <div v-else>
             <div v-for="item in items" :key="item.id">
