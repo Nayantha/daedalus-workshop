@@ -1,5 +1,6 @@
 <template>
     <div>
+        {{ tags }}
         <div v-if="error">{{ error.message }}</div>
         <div v-else-if="!items">Loading...</div>
         <div v-else>
@@ -19,13 +20,17 @@ const name = route.query.name as string;
 const minPrice = parseFloat(route.query.minPrice as string);
 const maxPrice = parseFloat(route.query.maxPrice as string);
 const rarity = route.query.rarity as string;
-const tags = route.query.tags as string | "";
+const filterTags = route.query.tags as string | "";
 const useAllTags = route.query.useAllTags?.toString() === "true";
-console.log("items", useAllTags)
 
 const { data, error } = await useFetch('/api/items',
-    { params: { page, pageSize, name, minPrice, maxPrice, rarity, tags, useAllTags } }
+    { params: { page, pageSize, name, minPrice, maxPrice, rarity, tags: filterTags, useAllTags } }
 );
+
+const { data: tagData, error: tagFetchError } = await useFetch(("/api/tags"));
+
+const { tags } = tagData.value || {};
+
 const {
     items,
 } = data.value || {};
