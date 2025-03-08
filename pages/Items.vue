@@ -32,9 +32,10 @@ const fetchParams = computed(() => {
     };
 });
 
-const { data, error } = await useFetch('/api/items',
-    { params: fetchParams }
-);
+const { data, error, refresh } = await useFetch('/api/items', {
+    params: fetchParams,
+    watch: [fetchParams]
+});
 
 const {
     items,
