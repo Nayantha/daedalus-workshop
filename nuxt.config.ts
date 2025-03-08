@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     'nuxt-auth-utils',
     '@prisma/nuxt',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    '@nuxt/icon',
   ],
   colorMode: {
     classSuffix: '',
