@@ -4,6 +4,15 @@ import prisma from "~/lib/prisma";
 
 const RARITIES = Object.values(Rarity);
 const ITEM_TYPES = Object.values(ItemType);
+const IMAGE_PATHS = [
+    "C:\\Users\\Nayantha\\Downloads\\hue-teo-allprops1.jpg",
+    "C:\\Users\\Nayantha\\Downloads\\hue-teo-allprops2.jpg",
+    "C:\\Users\\Nayantha\\Downloads\\hue-teo-allprops3.jpg",
+    "C:\\Users\\Nayantha\\Downloads\\hue-teo-allprops4.jpg",
+    "C:\\Users\\Nayantha\\Downloads\\hue-teo-magicshield-sword1.jpg",
+    "C:\\Users\\Nayantha\\Downloads\\jonas-ronnegard-image07.jpg",
+    "C:\\Users\\Nayantha\\Downloads\\matt-demino-grand-bazaar-arcane-book.jpg",
+]
 
 export async function main() {
     // Create Tags
@@ -19,9 +28,10 @@ export async function main() {
 
             return prisma.item.create({
                 data: {
-                    name: `${faker.commerce.productAdjective()} ${faker.commerce.product()}`,
+                    name: `${ faker.commerce.productAdjective() } ${ faker.commerce.product() }`,
+                    images: faker.helpers.arrayElements(IMAGE_PATHS, { min: 1, max: 3 }),
                     description: faker.commerce.productDescription(),
-                    price: faker.number.float({ min: 1, max: 1000}),
+                    price: faker.number.float({ min: 1, max: 1000 }),
                     rarity: faker.helpers.arrayElement(RARITIES),
                     requiredLevel: faker.number.int({ min: 1, max: 60 }),
                     itemType,
