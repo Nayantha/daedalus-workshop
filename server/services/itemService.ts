@@ -30,6 +30,7 @@ export const fetchItems = async ({
     const itemsToSkip = (page - 1) * pageSize;
     const noItemsPerPage = pageSize;
 
+
     const transformedTags = transformTagParamStringToArray(tags);
 
     const tagNameFilters = transformedTags.map(tagName => ({
@@ -47,10 +48,10 @@ export const fetchItems = async ({
         ...(minPrice && { price: { gte: minPrice } }),
         ...(maxPrice && { price: { lte: maxPrice } }),
         ...(rarity && { rarity: rarity }),
-        ...(tags && useAllTags
+        ...(tags && (useAllTags
                 ?
-                { AND: tagNameFilters }
-                : { OR: tagNameFilters }
+                {AND: tagNameFilters}
+                : {OR: tagNameFilters})
         )
     } as Prisma.ItemWhereInput;
 
