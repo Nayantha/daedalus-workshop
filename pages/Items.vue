@@ -1,8 +1,7 @@
 <template>
     <div>
-        {{ tags }}
+        <FilterMenu/>
         <div v-if="error">{{ error.message }}</div>
-        <div v-if="tagFetchError">{{ tagFetchError.message }}</div>
         <div v-else-if="!items">Loading...</div>
         <div v-else>
             <div v-for="item in items" :key="item.id">
@@ -13,6 +12,8 @@
 </template>
 
 <script lang="ts" setup>
+import FilterMenu from "~/components/Filter.vue";
+
 const route = useRoute();
 
 const page = parseInt(route.query.page as string) || 1;
@@ -27,10 +28,6 @@ const useAllTags = route.query.useAllTags?.toString() === "true";
 const { data, error } = await useFetch('/api/items',
     { params: { page, pageSize, name, minPrice, maxPrice, rarity, tags: filterTags, useAllTags } }
 );
-
-const { data: tagData, error: tagFetchError } = await useFetch(("/api/tags"));
-
-const { tags } = tagData.value || {};
 
 const {
     items,
