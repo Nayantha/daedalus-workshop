@@ -8,6 +8,16 @@
                 {{ item }}
             </div>
         </div>
+        <div class="pagination">
+
+            <div class="pagination-info">
+                Showing {{
+                    (page - 1) * pageSize + 1
+                }}-{{ Math.min(page * pageSize, totalItems) }}
+                of {{ totalItems }} items
+            </div>
+
+        </div>
     </div>
 </template>
 
@@ -38,6 +48,7 @@ const { data, error, refresh } = await useFetch('/api/items', {
 });
 
 const items = computed(() => data.value?.items || []);
+const totalItems = computed(() => data.value?.totalItems || 0);
 
 watch(() => route.query, (newQuery) => {
     page.value = parseInt(newQuery.page as string) || 1;
