@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import type { Users } from '@prisma/client';
 
 export interface RegisterDTO {
     name: string;
@@ -13,6 +13,6 @@ export interface LoginDTO {
 }
 
 // For creating new users
-export type CreateUserDB = Omit<User, 'id'>;
-export type UpdateUserDB = Partial<Omit<User, 'id'>>;
-export type PublicUser = Omit<User, 'password'|'salt'>;
+export type CreateUserDB = Omit<Users, 'id'>;
+export type UpdateUserDB = Partial<Omit<Users, 'id'>>;
+export type PublicUser = Omit<Users, 'password' | 'salt'>;
