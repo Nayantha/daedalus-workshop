@@ -27,6 +27,7 @@
     "yup": "^1.6.1"
   },
   "devDependencies": {
+    "@nuxtjs/color-mode": "^3.5.2",
     "@types/bcrypt": "^5.0.2",
     "prisma": "^6.4.1",
     "ts-node": "^10.9.2",

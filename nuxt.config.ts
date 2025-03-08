@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     'nuxt-auth-utils',
-    "@prisma/nuxt",
-    '@nuxtjs/tailwindcss'
+    '@prisma/nuxt',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/color-mode'
   ]
 })
