@@ -38,6 +38,11 @@ const { data, error, refresh } = await useFetch('/api/items', {
 });
 
 const items = computed(() => data.value?.items || []);
+
+watch(() => route.query, (newQuery) => {
+    page.value = parseInt(newQuery.page as string) || 1;
+    pageSize.value = parseInt(newQuery.pageSize as string) || 10;
+}, { deep: true });
 </script>
 
 <style scoped>
