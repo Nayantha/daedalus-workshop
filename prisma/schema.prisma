@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Users {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   name      String
@@ -16,7 +16,7 @@ model User {
   createdAt DateTime @default(now())
 }
 
-model Item {
+model Items {
   id            Int          @id @default(autoincrement())
   images        String[]
   name          String
@@ -36,15 +36,15 @@ model Item {
 }
 
 // Tagging system for filters
-model Tag {
+model Tags {
   id    Int          @id @default(autoincrement())
   name  String       @unique
   items TagsOnItem[]
 }
 
 model TagsOnItem {
-  item   Item @relation(fields: [itemId], references: [id])
-  tag    Tag  @relation(fields: [tagId], references: [id])
+  item   Items @relation(fields: [itemId], references: [id])
+  tag    Tags  @relation(fields: [tagId], references: [id])
   itemId Int
   tagId  Int
 
