@@ -51,6 +51,10 @@ watch(() => route.query, (newQuery) => {
     currentPage.value = parseInt(newQuery.page as string) || 1;
     pageSize.value = parseInt(newQuery.pageSize as string) || 10;
 }, { deep: true });
+
+useHead({
+    title: "Items Page"
+})
 </script>
 
 <style scoped>
