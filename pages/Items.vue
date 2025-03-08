@@ -18,15 +18,22 @@ const route = useRoute();
 
 const page = ref(parseInt(route.query.page as string) || 1);
 const pageSize = ref((route.query.pageSize as string) || 10);
-const name = route.query.name as string;
-const minPrice = parseFloat(route.query.minPrice as string);
-const maxPrice = parseFloat(route.query.maxPrice as string);
-const rarity = route.query.rarity as string;
-const filterTags = route.query.tags as string | "";
-const useAllTags = route.query.useAllTags?.toString() === "true";
+
+const fetchParams = computed(() => {
+    return {
+        page: page.value,
+        pageSize: parseInt(pageSize.value),
+        name: route.query.name as string,
+        minPrice: parseFloat(route.query.minPrice as string),
+        maxPrice: parseFloat(route.query.maxPrice as string),
+        rarity: route.query.rarity as string,
+        tags: route.query.tags as string | "",
+        useAllTags: route.query.useAllTags?.toString() === "true"
+    };
+});
 
 const { data, error } = await useFetch('/api/items',
-    { params: { page, pageSize, name, minPrice, maxPrice, rarity, tags: filterTags, useAllTags } }
+    { params: fetchParams }
 );
 
 const {
