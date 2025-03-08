@@ -37,9 +37,7 @@ const { data, error, refresh } = await useFetch('/api/items', {
     watch: [fetchParams]
 });
 
-const {
-    items,
-} = data.value || {};
+const items = computed(() => data.value?.items || []);
 </script>
 
 <style scoped>
