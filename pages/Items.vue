@@ -16,8 +16,8 @@ import FilterMenu from "~/components/Filter.vue";
 
 const route = useRoute();
 
-const page = parseInt(route.query.page as string) || 1;
-const pageSize = parseInt(route.query.pageSize as string) || 10;
+const page = ref(parseInt(route.query.page as string) || 1);
+const pageSize = ref((route.query.pageSize as string) || 10);
 const name = route.query.name as string;
 const minPrice = parseFloat(route.query.minPrice as string);
 const maxPrice = parseFloat(route.query.maxPrice as string);
