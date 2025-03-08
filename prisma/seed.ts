@@ -16,7 +16,7 @@ const IMAGE_PATHS = [
 
 export async function main() {
     // Create Tags
-    await prisma.tag.createMany({
+    await prisma.tags.createMany({
         data: ['Magical', 'Cursed', 'Ancient', 'Blessed', 'Limited'].map(name => ({ name })),
         skipDuplicates: true,
     });
@@ -26,7 +26,7 @@ export async function main() {
         Array.from({ length: 100 }).map(async () => {
             const itemType = faker.helpers.arrayElement(ITEM_TYPES);
 
-            return prisma.item.create({
+            return prisma.items.create({
                 data: {
                     name: `${ faker.commerce.productAdjective() } ${ faker.commerce.product() }`,
                     images: faker.helpers.arrayElements(IMAGE_PATHS, { min: 1, max: 3 }),
