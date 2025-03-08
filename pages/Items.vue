@@ -17,7 +17,7 @@ import FilterMenu from "~/components/Filter.vue";
 const route = useRoute();
 
 const page = ref(parseInt(route.query.page as string) || 1);
-const pageSize = ref((route.query.pageSize as string) || 10);
+const pageSize = ref(parseInt(route.query.pageSize as string) || 10);
 
 const fetchParams = computed(() => {
     return {
