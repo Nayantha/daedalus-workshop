@@ -50,13 +50,13 @@ export const fetchItems = async ({
         ...(rarity && { rarity: rarity }),
         ...(tags && (useAllTags
                 ?
-                {AND: tagNameFilters}
-                : {OR: tagNameFilters})
+                { AND: tagNameFilters }
+                : { OR: tagNameFilters })
         )
-    } as Prisma.ItemWhereInput;
+    } as Prisma.ItemsWhereInput;
 
     try {
-        const items = await prisma.item.findMany({
+        const items = await prisma.items.findMany({
             skip: itemsToSkip,
             take: noItemsPerPage,
             where,
@@ -79,7 +79,7 @@ export const fetchItems = async ({
             tags: item.tags.map(tagOnItem => tagOnItem.tag)
         }));
 
-        const totalItems = await prisma.item.count({ where });
+        const totalItems = await prisma.items.count({ where });
 
         return { items, totalItems };
     } catch (error) {
