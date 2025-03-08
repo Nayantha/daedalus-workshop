@@ -1,9 +1,12 @@
 <template>
     <div>
-        <button aria-label="Color Mode"
-                class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent bg-black dark:bg-white mt-4 lg:mt-0"
+        <button :class="colorMode.value === 'dark'
+                ? 'bg-stone-200 border-stone-200 text-stone-800 hover:bg-stone-100 hover:border-stone-100'
+                : 'bg-stone-800 border-stone-800 text-stone-50 hover:bg-stone-700 hover:border-stone-700'"
+                aria-label="Color Mode"
+                class="transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm min-w-[38px] min-h-[38px] rounded-md shadow-sm hover:shadow-md"
                 @click="changeColor">
-            <ColorScheme placeholder="...">
+            <ColorScheme>
                 <Icon v-if="colorMode.value === 'dark'" class="text-xl text-black" name="heroicons-outline:moon"/>
                 <Icon v-else class="text-xl" name="heroicons-outline:sun"/>
             </ColorScheme>
