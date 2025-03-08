@@ -163,7 +163,7 @@ const onSubmit = handleSubmit(async (values : RegisterDTO) => {
         // const data = await response.json();
         success.value = true;
         resetForm()
-        // await navigateTo('/');
+        await navigateTo('/');
     } catch (err: any) {
         error.value = err.message
     } finally {
