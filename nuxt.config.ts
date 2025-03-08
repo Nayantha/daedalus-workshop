@@ -8,5 +8,10 @@ export default defineNuxtConfig({
     '@prisma/nuxt',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode'
-  ]
+  ],
+  colorMode: {
+    classSuffix: '',
+    preference: 'dark',
+    fallback: 'dark'
+  },
 })
