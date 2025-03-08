@@ -77,7 +77,7 @@ const fetchParams = computed(() => {
     };
 });
 
-const { data, error, refresh } = await useFetch('/api/items', {
+const { data, error } = await useFetch('/api/items', {
     params: fetchParams,
     watch: [fetchParams]
 });
