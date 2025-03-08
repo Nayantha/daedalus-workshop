@@ -26,7 +26,28 @@
                 >
                     First
                 </button>
-
+                <button
+                    :disabled="page === 1"
+                    class="pagination-button"
+                    @click="changePage(page - 1)"
+                >
+                    Previous
+                </button>
+                <span class="page-indicator">Page {{ page }} of {{ totalPages }}</span>
+                <button
+                    :disabled="page === totalPages"
+                    class="pagination-button"
+                    @click="changePage(page + 1)"
+                >
+                    Next
+                </button>
+                <button
+                    :disabled="page === totalPages"
+                    class="pagination-button"
+                    @click="changePage(totalPages)"
+                >
+                    Last
+                </button>
 
             </div>
 
