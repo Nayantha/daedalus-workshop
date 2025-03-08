@@ -1,7 +1,7 @@
 <template>
     <div>
         <button aria-label="Color Mode"
-                class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent bg-blue-800 dark:bg-white mt-4 lg:mt-0"
+                class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent bg-black dark:bg-white mt-4 lg:mt-0"
                 @click="changeColor">
             <ColorScheme placeholder="...">
                 <Icon v-if="colorMode.value === 'dark'" class="text-xl text-black" name="heroicons-outline:moon"/>
