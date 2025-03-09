@@ -5,6 +5,7 @@ export interface RegisterDTO {
     email: string;
     password: string;
     confirmPassword: string;
+    avatar: string;
 }
 
 export interface LoginDTO {
