@@ -29,7 +29,6 @@
                     </svg>
                     <span class="w-5/6 font-bold text-center">Sign in with Google</span>
                 </button>
-
                 <a class="flex p-2 mx-2 text-sm font-medium text-gray-500 transition-colors duration-300 transform bg-gray-300 rounded-lg hover:bg-gray-200"
                    href="#">
                     <Icon class="text-xl" name="uil:github"/>
@@ -37,9 +36,10 @@
             </div>
             <div class="flex items-center justify-between mt-4">
                 <span class="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
-                <a class="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline" href="#">or
+                <div class="text-xs text-center text-gray-500 uppercase dark:text-gray-400">or
                     register
-                    with email</a>
+                    with email
+                </div>
                 <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
             </div>
             <form class="space-y-6" @submit="onSubmit">
@@ -63,85 +63,85 @@
                         class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
                         name="email"
                         required
-                    type="email"
-                />
-            <p v-if="errors.email" class="mt-1 text-sm text-red-600">{{ errors.email }}</p>
-        </div>
+                        type="email"
+                    />
+                    <p v-if="errors.email" class="mt-1 text-sm text-red-600">{{ errors.email }}</p>
+                </div>
 
-        <div>
-            <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
-                Name
-            </label>
-                <input
-                    id="name"
-                    v-model="name"
-                    :class="{ 'border-red-500': errors.name }"
-                    autocomplete="name"
-                    class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
-                    name="name"
-                    required
-                    type="text"
-                />
-            <p v-if="errors.name" class="mt-1 text-sm text-red-600">{{ errors.name }}</p>
-        </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
+                        Name
+                    </label>
+                    <input
+                        id="name"
+                        v-model="name"
+                        :class="{ 'border-red-500': errors.name }"
+                        autocomplete="name"
+                        class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                        name="name"
+                        required
+                        type="text"
+                    />
+                    <p v-if="errors.name" class="mt-1 text-sm text-red-600">{{ errors.name }}</p>
+                </div>
 
-        <div>
-            <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
-                Password
-            </label>
-                <input
-                    id="password"
-                    v-model="password"
-                    :class="{ 'border-red-500': errors.password }"
-                    autocomplete="current-password"
-                    class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
-                    name="password"
-                    required
-                    type="password"
-                />
-            <p v-if="errors.password" class="mt-1 text-sm text-red-600">{{ errors.password }}</p>
-        </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
+                        Password
+                    </label>
+                    <input
+                        id="password"
+                        v-model="password"
+                        :class="{ 'border-red-500': errors.password }"
+                        autocomplete="current-password"
+                        class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                        name="password"
+                        required
+                        type="password"
+                    />
+                    <p v-if="errors.password" class="mt-1 text-sm text-red-600">{{ errors.password }}</p>
+                </div>
 
-        <div>
-            <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
-                   for="confirmPassword">
-                Re-type Password
-            </label>
-                <input
-                    id="confirmPassword"
-                    v-model="confirmPassword"
-                    :class="{ 'border-red-500': errors.confirmPassword }"
-                    autocomplete="current-password"
-                    class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
-                    name="confirmPassword"
-                    required
-                    type="password"
-                />
-            <p v-if="errors.confirmPassword" class="mt-1 text-sm text-red-600">{{ errors.confirmPassword }}</p>
-        </div>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+                           for="confirmPassword">
+                        Re-type Password
+                    </label>
+                    <input
+                        id="confirmPassword"
+                        v-model="confirmPassword"
+                        :class="{ 'border-red-500': errors.confirmPassword }"
+                        autocomplete="current-password"
+                        class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                        name="confirmPassword"
+                        required
+                        type="password"
+                    />
+                    <p v-if="errors.confirmPassword" class="mt-1 text-sm text-red-600">{{ errors.confirmPassword }}</p>
+                </div>
 
-        <div>
-            <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" for="avatar">
-                Profile Picture
-            </label>
-            <div class="mt-2">
-                <input
-                    id="avatar"
-                    ref="avatarInput"
-                    accept="image/*"
-                    class="block w-full text-sm text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-grey-50 file:text-grey-600 hover:file:bg-grey-100"
-                    required
-                    type="file"
-                    @change="handleAvatarChange"
-                />
-            </div>
-            <div v-if="avatarPreview" class="mt-2">
-                <img :src="avatarPreview" alt="Avatar preview"
-                     class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"/>
-            </div>
-            <p v-if="errors.avatar" class="mt-1 text-sm text-red-600">{{ errors.avatar }}</p>
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" for="avatar">
+                        Profile Picture
+                    </label>
+                    <div class="mt-2">
+                        <input
+                            id="avatar"
+                            ref="avatarInput"
+                            accept="image/*"
+                            class="block w-full text-sm text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-grey-50 file:text-grey-600 hover:file:bg-grey-100"
+                            required
+                            type="file"
+                            @change="handleAvatarChange"
+                        />
+                    </div>
+                    <div v-if="avatarPreview" class="mt-2">
+                        <img :src="avatarPreview" alt="Avatar preview"
+                             class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"/>
+                    </div>
+                    <p v-if="errors.avatar" class="mt-1 text-sm text-red-600">{{ errors.avatar }}</p>
 
-        </div>
+                </div>
 
                 <div class="mt-4">
                     <button
@@ -154,16 +154,15 @@
                     </button>
                 </div>
 
-                <div class="flex items-center justify-between mt-4">
-                    <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
-
-                    <a class="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline" href="/register">or
-                        sign in</a>
-
-                    <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
-                </div>
-
             </form>
+            <div class="flex items-center justify-between mt-4">
+                <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+
+                <a class="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline" href="/login">or
+                    sign in</a>
+
+                <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+            </div>
         </div>
     </div>
 </template>
