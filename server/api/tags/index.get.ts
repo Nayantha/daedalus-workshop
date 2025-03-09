@@ -3,7 +3,7 @@ import prisma from "~/lib/prisma";
 
 export default defineEventHandler(async (event: H3Event) => {
     try {
-        const tags = await prisma.tags.findMany();
+        const tags = await prisma.tag.findMany();
         return { tags };
     } catch (error) {
         console.error(error);
