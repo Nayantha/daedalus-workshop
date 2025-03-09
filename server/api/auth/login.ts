@@ -12,7 +12,10 @@ export default defineEventHandler(async (event: H3Event) => {
                 message: "Request body is empty or undefined"
             });
         }
-        const {email, password} = body;
+
+        const { email, password } = body;
+
+        console.info(`A login request occurred. userEmail: ${ email }, password: ${ password }`);
 
         if (!email || !password) {
             createError({
@@ -26,7 +29,7 @@ export default defineEventHandler(async (event: H3Event) => {
         });
 
         if (!(await bcrypt.compare(password, userData.password))) {
-            console.error(`Invalid password for user: ${userData.name}, id: ${userData.id}`);
+            console.error(`Invalid password for user: ${ userData.name }, id: ${ userData.id }`);
             return createError({
                 statusCode: 401,
                 statusMessage: "Invalid password",
@@ -36,6 +39,7 @@ export default defineEventHandler(async (event: H3Event) => {
                 user: userData,
                 loggedInAt: Date.now(),
             });
+            console.info(`A user logged in. userID: ${ userData.id }. Time: ${ new Date().toISOString() }`)
         }
 
         return { success: true, userData };
@@ -43,9 +47,9 @@ export default defineEventHandler(async (event: H3Event) => {
 
     catch (error) {
         console.error(error);
-
         // @ts-ignore
         if (error.code === "P2025") {
+            console.error("No user found.", error);
             throw createError({ statusCode: 404, statusMessage: "User not found" });
         }
         throw createError({ statusCode: 500, statusMessage: "Internal Server Error" });
