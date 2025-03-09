@@ -5,7 +5,7 @@
              style="background-image: url('https://images.unsplash.com/photo-1606660265514-358ebbadc80d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80');">
         </div>
         <div class="w-full px-6 py-8 md:px-8 lg:w-1/2">
-            <p class="mt-3 text-xl text-center">
+            <p class="mt-3 text-xl text-center dark:text-white">
                 Welcome back!
             </p>
             <div class="flex items-center mt-6 -mx-2">
