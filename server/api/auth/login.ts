@@ -21,7 +21,7 @@ export default defineEventHandler(async (event: H3Event) => {
             });
         }
 
-        const userData = await prisma.users.findUniqueOrThrow({
+        const userData = await prisma.user.findUniqueOrThrow({
             where: { email: email }
         });
 
