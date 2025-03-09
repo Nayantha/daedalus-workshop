@@ -86,6 +86,28 @@
         </div>
 
         <div>
+            <label class="block text-sm font-medium leading-6 text-default-dark dark:text-default-light" for="avatar">
+                Profile Picture
+            </label>
+            <div class="mt-2">
+                <input
+                    id="avatar"
+                    ref="avatarInput"
+                    accept="image/*"
+                    class="block w-full text-sm text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                    required
+                    type="file"
+                    @change="handleAvatarChange"
+                />
+            </div>
+            <div v-if="avatarPreview" class="mt-2">
+                <img :src="avatarPreview" alt="Avatar preview" class="h-20 w-20 rounded-full object-cover"/>
+            </div>
+            <p v-if="errors.avatar" class="mt-1 text-sm text-red-600">{{ errors.avatar }}</p>
+
+        </div>
+
+        <div>
             <button
                 :disabled="loading"
                 class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -123,22 +145,36 @@ const { handleSubmit, errors, resetForm } = useForm({
         email: 'mail@mail.com',
         password: '1234567890aZ',
         confirmPassword: '1234567890aZ',
-        name: 'my name'
+        name: 'my name',
+        avatar: ''
     }
 });
 
 const loading = ref(false);
 const success = ref(false);
 const error = ref('');
+const avatarPreview = ref();
+const avatarFile = ref();
 
 const { value: email } = useField('email');
 const { value: name } = useField('name');
-const { value: address } = useField('address');
-const { value: phone } = useField('phone');
 const { value: confirmPassword } = useField('confirmPassword');
 const { value: password } = useField('password');
 
-const onSubmit = handleSubmit(async (values : RegisterDTO) => {
+const handleAvatarChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        avatarFile.value = file;
+        // Create preview
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            avatarPreview.value = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+};
+
+const onSubmit = handleSubmit(async (values: RegisterDTO) => {
 
     try {
         loading.value = true
@@ -160,7 +196,6 @@ const onSubmit = handleSubmit(async (values : RegisterDTO) => {
             }
             return;
         }
-        // const data = await response.json();
         success.value = true;
         resetForm()
         await navigateTo('/');
