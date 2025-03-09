@@ -29,7 +29,6 @@
                     </svg>
                     <span class="w-5/6 font-bold text-center">Sign in with Google</span>
                 </button>
-
                 <a class="flex p-2 mx-2 text-sm font-medium text-gray-500 transition-colors duration-300 transform bg-gray-300 rounded-lg hover:bg-gray-200"
                    href="#">
                     <Icon class="text-xl" name="uil:github"/>
@@ -38,9 +37,10 @@
             <div class="flex items-center justify-between mt-4">
                 <span class="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
 
-                <a class="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline" href="#">or
+                <div class="text-xs text-center text-gray-500 uppercase dark:text-gray-400">or
                     login
-                    with email</a>
+                    with email
+                </div>
 
                 <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
             </div>
@@ -98,17 +98,15 @@
                         <span v-else>Sign in</span>
                     </button>
                 </div>
-
-                <div class="flex items-center justify-between mt-4">
-                    <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
-
-                    <a class="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline" href="/register">or
-                        sign up</a>
-
-                    <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
-                </div>
-
             </form>
+            <div class="flex items-center justify-between mt-4">
+                <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+
+                <a class="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline" href="/register">or
+                    register</a>
+
+                <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+            </div>
         </div>
     </div>
 </template>
