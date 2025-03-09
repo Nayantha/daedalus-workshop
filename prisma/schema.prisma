@@ -13,6 +13,7 @@ model Users {
   name      String
   password  String
   salt      String
+  avatar    String
   createdAt DateTime @default(now())
 }
 
