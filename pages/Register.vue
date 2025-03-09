@@ -128,6 +128,14 @@ import type { RegisterDTO } from "~/types/User";
 const schema = yup.object({
     name: yup.string().required('Name is required'),
     email: yup.string().required('Email is required').email('Invalid email format'),
+    avatar: yup.mixed()
+        .required('Avatar required')
+        .test('fileSize', 'File too large (max 2MB)', value =>
+            value ? value.size <= 2000000 : true
+        )
+        .test('fileType', 'Invalid file type', value =>
+            value ? ['image/jpeg', 'image/png', 'image/webp', 'image/jpg', 'image/avif'].includes(value.type) : true
+        ),
     password: yup.string()
         .required('Password is required')
         .min(8, 'Password must be at least 8 characters')
@@ -161,26 +169,35 @@ const { value: name } = useField('name');
 const { value: confirmPassword } = useField('confirmPassword');
 const { value: password } = useField('password');
 
-const handleAvatarChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
+const handleAvatarChange = async (event: Event) => {
+    const input = event.target as HTMLInputElement;
+    if (input.files?.[0]) {
+        const file = input?.files[0];
         avatarFile.value = file;
-        // Create preview
+
+        // Convert file to base64 for JSON payload
         const reader = new FileReader();
         reader.onload = (e) => {
-            avatarPreview.value = e.target.result;
+            avatarPreview.value = e.target?.result as string;
         };
         reader.readAsDataURL(file);
     }
 };
 
 const onSubmit = handleSubmit(async (values: RegisterDTO) => {
-
     try {
         loading.value = true
         error.value = ''
 
-        const response = await fetch('/api/auth/register', {
+        if (avatarFile.value) {
+            const reader = new FileReader();
+            values.avatar = await new Promise((resolve) => {
+                reader.onload = () => resolve(reader.result as string);
+                reader.readAsDataURL(avatarFile.value!);
+            });
+        }
+
+        const response = await $fetch('/api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
