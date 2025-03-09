@@ -36,7 +36,7 @@ export default defineEventHandler(async (event: H3Event) => {
         const salt = await bcrypt.genSalt(SALT_ROUNDS);
         const hashedPassword = await bcrypt.hash(body.password, salt);
 
-        const userData = await prisma.user.create({
+        const userData = await prisma.users.create({
             data: {
                 email: email,
                 password: hashedPassword,

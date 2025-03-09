@@ -21,8 +21,8 @@ export default defineEventHandler(async (event: H3Event) => {
             });
         }
 
-        const userData = await prisma.user.findUniqueOrThrow({
-            where: {email: email}
+        const userData = await prisma.users.findUniqueOrThrow({
+            where: { email: email }
         });
 
         if (!(await bcrypt.compare(password, userData.password))) {
