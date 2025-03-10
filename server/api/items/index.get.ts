@@ -5,9 +5,12 @@ export default defineEventHandler(async (event: H3Event) => {
     try {
         const query = getQuery(event);
 
+        const page = parseInt(query.page as string) || 1;
+        const pageSize = parseInt(query.pageSize as string) || 10;
+
         const { items, totalItems } = await fetchItems({
-            page: parseInt(query.page as string) || 1,
-            pageSize: parseInt(query.pageSize as string) || 10,
+            page,
+            pageSize,
             name: query.name as string,
             minPrice: parseFloat(query.minPrice as string),
             maxPrice: parseFloat(query.maxPrice as string),
