@@ -46,7 +46,12 @@ const fetchParams = computed(() => {
         maxPrice: parseFloat(route.query.maxPrice as string),
         rarity: route.query.rarity as string,
         tags: route.query.tags as string | "",
-        useAllTags: route.query.useAllTags?.toString() === "true"
+        useAllTags: route.query.useAllTags?.toString() === "true",
+        itemType: route.query.itemType
+            ? (route.query.itemType as string)?.split(",").map(type =>
+                type.toUpperCase()
+            )
+            : []
     };
 });
 
