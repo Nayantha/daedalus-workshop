@@ -20,11 +20,11 @@
                 <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
             </div>
             <form class="space-y-6" @submit="onSubmit">
-                <div v-if="error" class="bg-red-50 text-red-600 p-4 rounded-lg mb-4">
+                <div v-if="error" class="bg-red-50 text-red-600 p-4 rounded-lg mt-4">
                     {{ error }}
                 </div>
 
-                <div v-if="success" class="bg-green-50 text-green-600 p-4 rounded-lg mb-4">
+                <div v-if="success" class="bg-green-50 text-green-600 p-4 rounded-lg mt-4">
                     Login successfully completed. Redirecting to home page....
                 </div>
 
