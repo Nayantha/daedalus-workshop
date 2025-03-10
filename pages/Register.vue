@@ -218,27 +218,25 @@ const onSubmit = handleSubmit(async (values: RegisterDTO) => {
             });
         }
 
-        const response = await $fetch('/api/auth/register', {
+        await $fetch('/api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(values)
-        })
+        });
 
-        if (!response.ok) {
-            const data = await response.json();
-            error.value = data.message || 'Registration failed';
-            if (response.status === 409) {
-                error.value = 'An account with this email already exists';
-            }
-            return;
-        }
         success.value = true;
         resetForm()
         await navigateTo('/');
     } catch (err: any) {
-        error.value = err.message
+        console.error(err);
+        error.value = err.message;
+        if (err.response && err.response.status === 409) {
+            error.value = 'An account with this email already exists';
+        } else {
+            error.value = err.data?.message || 'Registration failed';
+        }
     } finally {
         loading.value = false
     }
