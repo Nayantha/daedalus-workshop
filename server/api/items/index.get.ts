@@ -4,32 +4,20 @@ import { fetchItems } from "~/server/services/itemService";
 export default defineEventHandler(async (event: H3Event) => {
     try {
         const query = getQuery(event);
-        const page = parseInt(query.page as string) || 1;
-        const pageSize = parseInt(query.pageSize as string) || 10;
-        const name = query.name as string;
-        const minPrice = parseFloat(query.minPrice as string);
-        const maxPrice = parseFloat(query.maxPrice as string);
-        const rarity = query.rarity as string;
-        const tags = query.tags as string;
-        const useAllTags = query.useAllTags === "true";
-        const itemType = query.itemType as string;
-        const rate = query.rate as string;
-        const minRequiredLevel = parseInt(query.minRequiredLevel as string);
-        const maxRequiredLevel = parseInt(query.maxRequiredLevel as string);
 
         const { items, totalItems } = await fetchItems({
-            page,
-            pageSize,
-            name,
-            minPrice,
-            maxPrice,
-            rarity,
-            tags,
-            useAllTags,
-            itemType,
-            rate,
-            minRequiredLevel,
-            maxRequiredLevel,
+            page: parseInt(query.page as string) || 1,
+            pageSize: parseInt(query.pageSize as string) || 10,
+            name: query.name as string,
+            minPrice: parseFloat(query.minPrice as string),
+            maxPrice: parseFloat(query.maxPrice as string),
+            rarity: query.rarity as string,
+            tags: query.tags as string,
+            useAllTags: query.useAllTags === "true",
+            itemType: query.itemType as string,
+            rate: query.rate as string,
+            minRequiredLevel: parseInt(query.minRequiredLevel as string),
+            maxRequiredLevel: parseInt(query.maxRequiredLevel as string),
         });
 
         if (totalItems === 0) {
