@@ -65,9 +65,9 @@
 
                 <div class="mt-4">
                     <button
-                        :disabled="loading"
-                        class="flex w-full justify-center rounded-md transition-colors duration-300 transform bg-gray-800 px-6 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                        type="submit"
+                            :disabled="loading"
+                            class="flex w-full justify-center rounded-md transition-colors duration-300 transform bg-gray-800 px-6 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed dark:text-black dark:bg-white"
+                            type="submit"
                     >
                         <span v-if="loading">Processing...</span>
                         <span v-else>Sign in</span>
