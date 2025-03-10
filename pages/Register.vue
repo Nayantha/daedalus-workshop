@@ -104,7 +104,7 @@
                             id="avatar"
                             ref="avatarInput"
                             accept="image/*"
-                            class="block w-full text-sm text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-grey-50 file:text-grey-600 hover:file:bg-grey-100"
+                            class="block w-full text-sm text-gray-900 dark:text-gray-200 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-grey-50 file:text-grey-600 hover:file:bg-grey-100 dark:file:text-grey-400 dark:file:bg-grey-800 dark:file:hover:bg-grey-700"
                             required
                             type="file"
                             @change="handleAvatarChange"
