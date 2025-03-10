@@ -58,7 +58,7 @@ export const fetchItems = async ({
         ...(rarity && { rarity: rarity }),
         ...(itemType && { itemType: itemType }),
         ...(rate && { rate: rate.toUpperCase() }),
-        ...(maxRequiredLevel && { requiredLevel: { gte: maxRequiredLevel } }),
+        ...(minRequiredLevel && { requiredLevel: { gte: minRequiredLevel } }),
         ...(maxRequiredLevel && { requiredLevel: { lte: maxRequiredLevel } }),
         ...(tags && (useAllTags
                 ?
