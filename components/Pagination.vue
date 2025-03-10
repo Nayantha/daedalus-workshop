@@ -1,33 +1,45 @@
 <template>
-    <div class="pagination">
+    <div class="pagination flex flex-col items-center gap-2 my-2 py-4 dark:text-gray-200 dark:bg-gray-900">
         <div class="pagination-info">
             Showing {{ startItem }}-{{ endItem }} of {{ totalItems }} items
         </div>
-
-        <div class="pagination-controls">
+        <div class="pagination-controls dark:text-gray-200">
             <button
-                    :disabled="currentPage === 1"
-                    class="pagination-button"
-                    @click="onPageChange(1)"
+                :disabled="currentPage === 1"
+                class="mr-4 pagination-button inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm rounded-md py-2 px-4 bg-transparent border-transparent text-gray-800 hover:bg-gray-800/5 hover:border-gray-800/5 shadow-none hover:shadow-none dark:text-gray-200 dark:bg-gray-800"
+                @click="onPageChange(1)"
             >
+                <svg class="mr-1.5 h-4 w-4 stroke-2" color="currentColor" fill="none" height="1.5em" stroke-width="1.5"
+                     viewBox="0 0 24 24" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                    <path d="M10 6L5 12L10 18" stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                </svg>
                 First
             </button>
 
             <button
-                    :disabled="currentPage === 1"
-                    class="pagination-button"
-                    @click="onPageChange(currentPage - 1)"
+                :disabled="currentPage === 1"
+                class="pagination-button inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm rounded-md py-2 px-4 bg-transparent border-transparent text-gray-800 hover:bg-gray-800/5 hover:border-gray-800/5 shadow-none hover:shadow-none dark:text-gray-200 dark:bg-gray-800"
+                @click="onPageChange(currentPage - 1)"
             >
+                <svg class="mr-1.5 h-4 w-4 stroke-2" color="currentColor" fill="none" height="1.5em" stroke-width="1.5"
+                     viewBox="0 0 24 24" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 6L9 12L15 18" stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                </svg>
                 Previous
             </button>
 
-            <span class="page-numbers">
+            <span class="page-numbers ml-4">
               <template v-for="pageNum in displayedPageNumbers" :key="pageNum">
                 <button
-                        v-if="pageNum !== '...'"
-                        :class="['page-number-button', { active: pageNum === currentPage }]"
-                        :disabled="pageNum === currentPage"
-                        @click="onPageChange(pageNum)"
+                    v-if="pageNum !== '...'"
+                    :class="['page-number-button', pageNum === currentPage ? 'shadow-sm hover:shadow-md bg-gray-800 border-gray-800 text-gray-50 hover:bg-gray-700 hover:border-gray-700' : 'bg-transparent border-transparent text-gray-800 hover:bg-gray-800/5 hover:border-gray-800/5 shadow-none hover:shadow-none dark:text-gray-400']"
+                    :disabled="pageNum === currentPage"
+                    class="inline-grid place-items-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:pointer-events-none text-sm min-w-[38px] min-h-[38px] rounded-md"
+                    @click="onPageChange(pageNum)"
                 >
                   {{ pageNum }}
                 </button>
@@ -35,22 +47,34 @@
               </template>
             </span>
 
-            <span class="page-indicator">Page {{ currentPage }} of {{ totalPages }}</span>
+            <span class="page-indicator mr-4">Page {{ currentPage }} of {{ totalPages }}</span>
 
             <button
-                    :disabled="currentPage === totalPages"
-                    class="pagination-button"
-                    @click="onPageChange(currentPage + 1)"
+                :disabled="currentPage === totalPages"
+                class="pagination-button inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm rounded-md py-2 px-4 bg-transparent border-transparent text-gray-800 hover:bg-gray-800/5 hover:border-gray-800/5 shadow-none hover:shadow-none dark:text-gray-200 dark:bg-gray-800"
+                @click="onPageChange(currentPage + 1)"
             >
                 Next
+                <svg class="ml-1.5 h-4 w-4 stroke-2" color="currentColor" fill="none" height="1.5em" stroke-width="1.5"
+                     viewBox="0 0 24 24" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                </svg>
             </button>
 
             <button
-                    :disabled="currentPage === totalPages"
-                    class="pagination-button"
-                    @click="onPageChange(totalPages)"
+                :disabled="currentPage === totalPages"
+                class="ml-4 pagination-button inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm rounded-md py-2 px-4 bg-transparent border-transparent text-gray-800 hover:bg-gray-800/5 hover:border-gray-800/5 shadow-none hover:shadow-none dark:text-gray-200 dark:bg-gray-800"
+                @click="onPageChange(totalPages)"
             >
                 Last
+                <svg class="ml-1.5 h-4 w-4 stroke-2" color="currentColor" fill="none" height="1.5em" stroke-width="1.5"
+                     viewBox="0 0 24 24" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                    <path d="M14 6L20 12L14 18" stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                </svg>
             </button>
         </div>
     </div>
