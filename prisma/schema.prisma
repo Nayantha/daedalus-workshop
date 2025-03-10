@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   email     String   @unique
   name      String
   password  String
@@ -18,7 +18,7 @@ model User {
 }
 
 model Item {
-  id            Int          @id @default(autoincrement())
+  id            String       @id @default(uuid())
   images        String[]
   name          String
   description   String
@@ -38,16 +38,16 @@ model Item {
 
 // Tagging system for filters
 model Tag {
-  id    Int          @id @default(autoincrement())
+  id    String       @id @default(uuid())
   name  String       @unique
   items TagsOnItem[]
 }
 
 model TagsOnItem {
-  item   Item @relation(fields: [itemId], references: [id])
-  tag    Tag  @relation(fields: [tagId], references: [id])
-  itemId Int
-  tagId  Int
+  item   Item   @relation(fields: [itemId], references: [id])
+  tag    Tag    @relation(fields: [tagId], references: [id])
+  itemId String
+  tagId  String
 
   @@id([itemId, tagId])
 }
