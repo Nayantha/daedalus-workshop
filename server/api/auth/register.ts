@@ -93,7 +93,7 @@ export default defineEventHandler(async (event: H3Event) => {
 
         await setUserSession(event, {
             user: userData,
-            loggedInAt: Date.now(),
+            loggedInAt: new Date().toISOString(),
         });
 
         return { success: true, userData };
