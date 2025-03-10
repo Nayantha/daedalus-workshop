@@ -10,7 +10,10 @@ interface FetchItemsParams {
     rarity?: string;
     tags?: string;
     useAllTags: boolean,
-    itemType?: string
+    itemType?: string,
+    rate?: string;
+    minRequiredLevel?: number;
+    maxRequiredLevel?: number;
 }
 
 function transformTagParamStringToArray(tagString: string | undefined) {
@@ -27,7 +30,10 @@ export const fetchItems = async ({
                                      rarity,
                                      tags,
                                      useAllTags,
-                                     itemType
+                                     itemType,
+                                     rate,
+                                     minRequiredLevel,
+                                     maxRequiredLevel,
                                  }: FetchItemsParams) => {
     const itemsToSkip = (page - 1) * pageSize;
     const noItemsPerPage = pageSize;
@@ -51,6 +57,9 @@ export const fetchItems = async ({
         ...(maxPrice && { price: { lte: maxPrice } }),
         ...(rarity && { rarity: rarity }),
         ...(itemType && { itemType: itemType }),
+        ...(rate && { rate: rate.toUpperCase() }),
+        ...(maxRequiredLevel && { requiredLevel: { gte: maxRequiredLevel } }),
+        ...(maxRequiredLevel && { requiredLevel: { lte: maxRequiredLevel } }),
         ...(tags && (useAllTags
                 ?
                 { AND: tagNameFilters }
