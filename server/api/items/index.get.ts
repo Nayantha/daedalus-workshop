@@ -13,6 +13,9 @@ export default defineEventHandler(async (event: H3Event) => {
         const tags = query.tags as string;
         const useAllTags = query.useAllTags === "true";
         const itemType = query.itemType as string;
+        const rate = query.rate as string;
+        const minRequiredLevel = parseInt(query.minRequiredLevel as string);
+        const maxRequiredLevel = parseInt(query.maxRequiredLevel as string);
 
         const { items, totalItems } = await fetchItems({
             page,
@@ -23,7 +26,10 @@ export default defineEventHandler(async (event: H3Event) => {
             rarity,
             tags,
             useAllTags,
-            itemType
+            itemType,
+            rate,
+            minRequiredLevel,
+            maxRequiredLevel,
         });
 
         if (totalItems === 0) {
