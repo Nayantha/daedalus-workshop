@@ -51,7 +51,10 @@ const fetchParams = computed(() => {
             ? (route.query.itemType as string)?.split(",").map(type =>
                 type.toUpperCase()
             )
-            : []
+            : [],
+        rate: route.query.itemRate?.toString().toUpperCase(),
+        minRequiredLevel: parseInt(route.query.minReqLvl as string),
+        maxRequiredLevel: parseInt(route.query.maxReqLvl as string),
     };
 });
 
