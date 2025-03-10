@@ -29,7 +29,12 @@ export default defineOAuthGitHubEventHandler({
                 avatar: user.avatar_url
             },
             loggedInAt: new Date().toISOString(),
-
+            auth: {
+                accessToken: tokens.accessToken,
+                refreshToken: tokens.refreshToken,
+                expiresIn: tokens.expiresIn,
+                tokenType: tokens.tokenType
+            }
         })
         return sendRedirect(event, '/')
     },
