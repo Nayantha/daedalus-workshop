@@ -1,6 +1,15 @@
 <template>
     <div>
         <FilterMenu/>
+        <div class="flex w-8/12 mx-auto justify-between bg-stone-100 p-0.5 relative rounded-lg my-4" role="tablist">
+            <a v-for="(itemType, i) in ITEM_TYPES"
+               :key="i"
+               :data-dui-tab-target="`tab${i}-group`"
+               :href="`?itemType=${itemType.toLowerCase()}`"
+               class="text-sm active inline-block py-2 px-4 text-stone-800 transition-all duration-300 relative z-1 mr-1">
+                {{ itemType.toLowerCase() }}
+            </a>
+        </div>
         <div v-if="error">{{ error.message }}</div>
         <div v-else-if="!items">Loading...</div>
         <div v-else>
@@ -19,6 +28,9 @@
 
 <script lang="ts" setup>
 import FilterMenu from "~/components/Filter.vue";
+import { ItemType } from "@prisma/client";
+
+const ITEM_TYPES = Object.values(ItemType);
 
 const route = useRoute();
 
