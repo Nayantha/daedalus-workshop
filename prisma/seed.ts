@@ -1,9 +1,10 @@
-import { ItemType, Rarity } from '@prisma/client';
+import { ItemType, Rarity, TagType } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 import prisma from "~/lib/prisma";
 
 const RARITIES = Object.values(Rarity);
 const ITEM_TYPES = Object.values(ItemType);
+const TAG_TYPES = Object.values(TagType);
 const IMAGE_PATHS = [
     "C:\\Users\\Nayantha\\Downloads\\hue-teo-allprops1.jpg",
     "C:\\Users\\Nayantha\\Downloads\\hue-teo-allprops2.jpg",
@@ -17,7 +18,7 @@ const IMAGE_PATHS = [
 export async function main() {
     // Create Tags
     await prisma.tag.createMany({
-        data: ['Magical', 'Cursed', 'Ancient', 'Blessed', 'Limited'].map(name => ({ name })),
+        data: TAG_TYPES.map(name => ({ name })),
         skipDuplicates: true,
     });
 
