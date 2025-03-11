@@ -68,7 +68,7 @@ export const fetchItems = async ({
     } as Prisma.ItemWhereInput;
 
     try {
-        const items = await prisma.item.findMany({
+        const items = (await prisma.item.findMany({
             skip: itemsToSkip,
             take: noItemsPerPage,
             where,
@@ -84,12 +84,11 @@ export const fetchItems = async ({
                     }
                 }
             },
-        });
-        // convert tag and item to tag and its name
-        items.map(item => ({
-            ...item,
-            tags: item.tags.map(tagOnItem => tagOnItem.tag)
-        }));
+        }))
+            .map(item => ({
+                ...item,
+                tags: item.tags.map(tagOnItem => tagOnItem.tag)
+            }));
 
         const totalItems = await prisma.item.count({ where });
 
