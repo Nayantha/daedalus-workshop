@@ -16,13 +16,13 @@
             <div v-for="item in items" :key="item.id">
                 {{ item }}
             </div>
+            <Pagination
+                :current-page="currentPage"
+                :page-size="pageSize"
+                :total-items="totalItems"
+                :total-pages="totalPages"
+            />
         </div>
-        <Pagination
-            :current-page="currentPage"
-            :page-size="pageSize"
-            :total-items="totalItems"
-            :total-pages="totalPages"
-        />
     </div>
 </template>
 
