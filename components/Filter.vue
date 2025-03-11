@@ -5,7 +5,7 @@
     <a v-for="(tag, i) in TAGS"
        :key="i"
        :data-dui-tab-target="`tab${i}-group`"
-       :href="`?tag=${tag.toLowerCase()}`"
+       :href="`?tags=${tag.toLowerCase()}`"
        class="text-sm active inline-block py-2 px-4 text-stone-800 transition-all duration-300 relative z-1 mr-1">
         {{ tag.toLowerCase() }}
     </a>
