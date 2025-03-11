@@ -18,7 +18,7 @@ interface FetchItemsParams {
 
 function transformTagParamStringToArray(tagString: string | undefined) {
     if (!tagString) return [];
-    return tagString.split(",");
+    return tagString.split(",").map(tag => tag.toUpperCase());
 }
 
 export const fetchItems = async ({
@@ -37,7 +37,6 @@ export const fetchItems = async ({
                                  }: FetchItemsParams) => {
     const itemsToSkip = (page - 1) * pageSize;
     const noItemsPerPage = pageSize;
-
 
     const transformedTags = transformTagParamStringToArray(tags);
 
