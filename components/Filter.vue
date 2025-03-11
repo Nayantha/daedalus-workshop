@@ -15,8 +15,6 @@
 import { TagType } from '@prisma/client';
 
 const TAGS = Object.values(TagType || {});
-
-console.log(TagType, TAGS);
 </script>
 <style scoped>
 
