@@ -1,19 +1,16 @@
 import { H3Event } from "h3";
 
 interface GitHubUser {
-    id: number
-    login: string
     name: string
     email: string
     avatar_url: string
-    html_url: string
 }
 
 interface OAuthTokens {
-    accessToken: string
-    refreshToken?: string
-    expiresIn?: number
-    tokenType?: string
+    access_token: string
+    refresh_token?: string
+    expires_in?: number
+    token_type?: string
 }
 
 export default defineOAuthGitHubEventHandler({
@@ -21,19 +18,20 @@ export default defineOAuthGitHubEventHandler({
         emailRequired: true
     },
     async onSuccess(event: H3Event, { user, tokens }: { user: GitHubUser, tokens: OAuthTokens }) {
+        console.log(user);
+        console.log(tokens);
         await setUserSession(event, {
             user: {
-                id: user.id,
                 name: user.name,
                 email: user.email,
                 avatar: user.avatar_url
             },
             loggedInAt: new Date().toISOString(),
             auth: {
-                accessToken: tokens.accessToken,
-                refreshToken: tokens.refreshToken,
-                expiresIn: tokens.expiresIn,
-                tokenType: tokens.tokenType
+                accessToken: tokens.access_token,
+                refreshToken: tokens.refresh_token,
+                expiresIn: tokens.expires_in,
+                tokenType: tokens.token_type
             }
         })
         return sendRedirect(event, '/')

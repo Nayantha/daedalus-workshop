@@ -1,22 +1,17 @@
 import { H3Event } from "h3";
 
 interface GoogleUser {
-    id: string
     email: string
-    verified_email: boolean
     name: string
-    given_name: string
-    family_name: string
     picture: string
-    locale: string
 }
 
 interface OAuthTokens {
-    accessToken: string
+    access_token: string
     refreshToken?: string
-    expiresIn?: number
-    tokenType?: string
-    idToken?: string  // Google provides an ID token
+    expires_in?: number
+    token_type?: string
+    id_token?: string
 }
 
 export default defineOAuthGoogleEventHandler({
@@ -27,21 +22,20 @@ export default defineOAuthGoogleEventHandler({
     async onSuccess(event: H3Event, { user, tokens }: { user: GoogleUser, tokens: OAuthTokens }) {
         await setUserSession(event, {
             user: {
-                id: user.id,
                 name: user.name,
                 email: user.email,
                 avatar: user.picture
             },
             loggedInAt: new Date().toISOString(),
             auth: {
-                accessToken: tokens.accessToken,
+                accessToken: tokens.access_token,
                 refreshToken: tokens.refreshToken,
-                expiresIn: tokens.expiresIn,
-                tokenType: tokens.tokenType,
-                idToken: tokens.idToken
+                expiresIn: tokens.expires_in,
+                tokenType: tokens.token_type,
+                idToken: tokens.id_token
             }
         })
-        return sendRedirect(event, '/')
+        return sendRedirect(event, '/');
     },
 
     onError(event: H3Event, error: Error) {
