@@ -45,7 +45,8 @@
 
 <script lang="ts" setup>
 import FilterMenu from "~/components/Filter.vue";
-import { Item, ItemType, Tag } from "@prisma/client";
+import { ItemType } from "@prisma/client";
+import type { ItemWithTags } from "~/types/Item";
 
 const ITEM_TYPES = Object.values(ItemType);
 
@@ -80,7 +81,7 @@ const { data, error } = await useFetch('/api/items', {
     watch: [fetchParams]
 });
 
-const items = computed<(Item & { tags: Tag[] })[]>(() => data.value?.items || []);
+const items = computed<ItemWithTags[]>(() => data.value?.items || []);
 const totalItems = computed<number>(() => data.value?.totalItems || 0);
 const totalPages = computed<number>(() => data.value?.totalPages || 1);
 
