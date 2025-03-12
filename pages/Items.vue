@@ -13,9 +13,26 @@
         <div v-if="error">{{ error.message }}</div>
         <div v-else-if="!items">Loading...</div>
         <div v-else>
-            <div v-for="item in items" :key="item.id">
-                {{ item }}
-            </div>
+            <section class="text-gray-400 bg-gray-900 body-font">
+                <div class="container px-5 py-24 mx-auto">
+                    <div class="flex flex-wrap -m-4">
+                        <div v-for="item in items" :key="item.id" class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                            <a class="block relative h-48 rounded overflow-hidden">
+                                <img alt="ecommerce" class="object-cover object-center w-full h-full block"
+                                     src="https://dummyimage.com/420x260">
+                            </a>
+                            <div class="mt-4">
+                                <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
+                                    <span>{{ item.itemType }}</span>
+                                </h3>
+                                <h2 class="text-white title-font text-lg font-medium">{{ item.name }}</h2>
+                                <p class="mt-1">$ {{ item.price }}</p>
+                                {{ item }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <Pagination
                 :current-page="currentPage"
                 :page-size="pageSize"
