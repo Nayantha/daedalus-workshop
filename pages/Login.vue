@@ -118,35 +118,29 @@ const { value: password } = useField('password');
 const onSubmit = handleSubmit(async (values) => {
 
     try {
-        loading.value = true
-        error.value = ''
+        loading.value = true;
+        error.value = '';
 
-        const response = await fetch('/api/auth/login', {
+        await $fetch('/api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(values)
-        })
+        });
 
-        if (!response.ok) {
-            const data = await response.json();
-
-            error.value = data.message || 'Login failed';
-
-            if (response.status === 409) {
-                error.value = 'Wrong password.';
-            }
-            return;
-        }
-        // const data = await response.json();
         success.value = true;
-        resetForm()
-        // await navigateTo('/');
+        resetForm();
+        await navigateTo('/');
     } catch (err: any) {
-        error.value = err.message
+        error.value = err.message;
+        if (err.response && err.response.status === 409) {
+            error.value = 'An account with this email already exists';
+        } else {
+            error.value = err.data?.message || 'Registration failed';
+        }
     } finally {
-        loading.value = false
+        loading.value = false;
     }
 })
 
