@@ -60,7 +60,7 @@
 
                     <button
                         :disabled="loading"
-                        class="flex w-full justify-center rounded-md transition-colors duration-300 transform bg-gray-800 px-6 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed dark:text-black dark:bg-indigo-600 dark:hover:bg-indigo-700"
+                        class="flex w-full justify-center rounded-md transition-colors duration-300 transform bg-gray-800 px-6 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed dark:text-dark dark:bg-indigo-600 dark:hover:bg-indigo-700"
                         type="submit"
                     >
                         <span v-if="loading">Processing...</span>
