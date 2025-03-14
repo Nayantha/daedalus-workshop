@@ -21,12 +21,6 @@
 
                 <OAuthAuthentication/>
 
-                <div class="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-                    <hr class="border-dashed dark:border-zinc-700"/>
-                    <span class="text-muted-foreground text-xs dark:text-zinc-400">Or continue With</span>
-                    <hr class="border-dashed dark:border-zinc-700"/>
-                </div>
-
                 <div class="mt-6 space-y-6">
                     <div class="space-y-2">
                         <Label class="block text-sm dark:text-zinc-300" for="email">
