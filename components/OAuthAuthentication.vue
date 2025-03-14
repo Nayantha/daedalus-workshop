@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-2 gap-3">
+    <div class="grid grid-cols-2 gap-3 mt-5">
         <a class="flex items-center justify-center w-full px-6 py-2 text-sm border rounded-lg font-medium text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-blue-400 focus:outline-none dark:hover:bg-gray-600 dark:border-zinc-700 dark:text-zinc-300 hover:bg-gray-50"
            href="/api/auth/google">
             <svg class="w-6 h-6" viewBox="0 0 40 40">
