@@ -1,24 +1,25 @@
-import { ItemType, Rarity, TagType } from '@prisma/client';
-import { faker } from '@faker-js/faker';
+import {ItemType, Rarity, TagType} from '@prisma/client';
+import {faker} from '@faker-js/faker';
 import prisma from "~/lib/prisma";
 
 const RARITIES = Object.values(Rarity);
 const ITEM_TYPES = Object.values(ItemType);
 const TAG_TYPES = Object.values(TagType);
 const IMAGE_PATHS = [
-    "C:\\Users\\Nayantha\\Downloads\\hue-teo-allprops1.jpg",
-    "C:\\Users\\Nayantha\\Downloads\\hue-teo-allprops2.jpg",
-    "C:\\Users\\Nayantha\\Downloads\\hue-teo-allprops3.jpg",
-    "C:\\Users\\Nayantha\\Downloads\\hue-teo-allprops4.jpg",
-    "C:\\Users\\Nayantha\\Downloads\\hue-teo-magicshield-sword1.jpg",
-    "C:\\Users\\Nayantha\\Downloads\\jonas-ronnegard-image07.jpg",
-    "C:\\Users\\Nayantha\\Downloads\\matt-demino-grand-bazaar-arcane-book.jpg",
-]
+    "https://dummyimage.com/420x260/ff0000/ffffff", // Red
+    "https://dummyimage.com/420x260/00ff00/ffffff", // Green
+    "https://dummyimage.com/420x260/0000ff/ffffff", // Blue
+    "https://dummyimage.com/420x260/ffff00/000000", // Yellow
+    "https://dummyimage.com/420x260/ff00ff/ffffff", // Magenta
+    "https://dummyimage.com/420x260/00ffff/000000", // Cyan
+    "https://dummyimage.com/420x260/000000/ffffff", // Black
+];
+
 
 export async function main() {
     // Create Tags
     await prisma.tag.createMany({
-        data: TAG_TYPES.map(name => ({ name })),
+        data: TAG_TYPES.map(name => ({name})),
         skipDuplicates: true,
     });
 
