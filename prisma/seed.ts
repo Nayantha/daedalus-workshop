@@ -30,12 +30,12 @@ export async function main() {
 
             return prisma.item.create({
                 data: {
-                    name: `${ faker.commerce.productAdjective() } ${ faker.commerce.product() }`,
-                    images: faker.helpers.arrayElements(IMAGE_PATHS, { min: 1, max: 3 }),
+                    name: `${faker.commerce.productAdjective()} ${faker.commerce.product()}`,
+                    images: faker.helpers.arrayElements(IMAGE_PATHS, {min: 2, max: 3}),
                     description: faker.commerce.productDescription(),
-                    price: faker.number.float({ min: 1, max: 1000 }),
+                    price: faker.number.float({min: 1, max: 1000}),
                     rarity: faker.helpers.arrayElement(RARITIES),
-                    requiredLevel: faker.number.int({ min: 1, max: 60 }),
+                    requiredLevel: faker.number.int({min: 1, max: 60}),
                     itemType,
                     tags: {
                         create: faker.helpers
