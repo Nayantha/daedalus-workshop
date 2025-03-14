@@ -39,7 +39,7 @@ export async function main() {
                     itemType,
                     tags: {
                         create: faker.helpers
-                            .arrayElements(['Magical', 'Cursed', 'Ancient', 'Blessed', 'Limited'], { min: 1, max: 3 })
+                            .arrayElements(TAG_TYPES, {min: 1, max: 3})
                             .map(tagName => ({
                                 tag: {
                                     connect: { name: tagName }
