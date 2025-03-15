@@ -7,8 +7,8 @@
                 class="transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm min-w-[38px] min-h-[38px] rounded-md shadow-sm hover:shadow-md flex items-center justify-center"
                 @click="changeColor">
             <ColorScheme>
-                <Icon v-if="colorMode.value === 'dark'" class="text-xl text-black" name="heroicons-outline:moon"/>
-                <Icon v-else class="text-xl" name="heroicons-outline:sun"/>
+                <Icon v-if="colorMode.value === 'dark'" class="text-xl text-black" name="heroicons-outline:sun"/>
+                <Icon v-else class="text-xl" name="heroicons-outline:moon"/>
             </ColorScheme>
         </button>
     </div>
