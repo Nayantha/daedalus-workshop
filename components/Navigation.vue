@@ -42,9 +42,14 @@
                 </div>
             </div>
             <!--Nav Login/SignUp + Theme Toggle-->
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a class="text-sm/6 font-semibold text-gray-900" href="/login">Log in <span
-                    aria-hidden="true">&rarr;</span></a>
+            <div
+                class="hidden lg:flex lg:flex-1 lg:justify-end flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit lg:pl-6">
+                <Button as="router-link" class="dark:text-white" size="sm" to="/login" variant="outline">
+                    Login
+                </Button>
+                <Button as="router-link" class="dark:text-white" size="sm" to="/register">
+                    Sign Up
+                </Button>
                 <ThemeToggleBotton/>
             </div>
         </nav>
