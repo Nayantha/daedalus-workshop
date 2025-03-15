@@ -1,6 +1,7 @@
 <template>
-    <header class="bg-white dark:bg-black">
-        <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+    <header>
+        <nav aria-label="Global"
+             class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 dark:bg-zinc-950/50 lg:dark:bg-transparent">
             <!--LOGO-->
             <div class="flex lg:flex-1">
                 <a class="-m-1.5 p-1.5" href="#">
