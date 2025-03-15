@@ -63,8 +63,8 @@
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 <a class="text-sm/6 font-semibold text-gray-900" href="/login">Log in <span
                     aria-hidden="true">&rarr;</span></a>
+                <ThemeToggleBotton/>
             </div>
-            <ThemeToggleBotton/>
         </nav>
         <Dialog :open="mobileMenuOpen" class="lg:hidden" @close="mobileMenuOpen = false">
             <div class="fixed inset-0 z-10"/>
