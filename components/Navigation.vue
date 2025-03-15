@@ -83,9 +83,16 @@
                         <img alt="" class="h-8 w-auto"
                              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"/>
                     </a>
-                    <button class="-m-2.5 rounded-md p-2.5 text-gray-700" type="button" @click="mobileMenuOpen = false">
+                    <button class="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden mr-0" type="button"
+                            @click="mobileMenuOpen = false">
                         <span class="sr-only">Close menu</span>
-                        <XMarkIcon aria-hidden="true" class="size-6"/>
+                        <X
+                            :class="[
+                    'absolute inset-0 m-auto size-6 duration-200',
+                    { 'rotate-0 scale-100 opacity-100': mobileMenuOpen },
+                    { '-rotate-180 scale-0 opacity-0': !mobileMenuOpen }
+                  ]"
+                        />
                     </button>
                 </div>
                 <div class="mt-6 flow-root">
@@ -143,10 +150,9 @@ import {
     CursorArrowRaysIcon,
     FingerPrintIcon,
     SquaresPlusIcon,
-    XMarkIcon,
 } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/vue/20/solid'
-import { Menu } from "lucide-vue-next";
+import { Menu, X } from "lucide-vue-next";
 
 const products = [
     { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
