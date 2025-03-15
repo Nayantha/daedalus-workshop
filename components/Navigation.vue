@@ -1,6 +1,7 @@
 <template>
     <header class="bg-white dark:bg-black">
         <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+            <!--LOGO-->
             <div class="flex lg:flex-1">
                 <a class="-m-1.5 p-1.5" href="#">
                     <span class="sr-only">Your Company</span>
@@ -8,13 +9,18 @@
                          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"/>
                 </a>
             </div>
-            <div class="flex lg:hidden">
-                <button class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                        type="button" @click="mobileMenuOpen = true">
-                    <span class="sr-only">Open main menu</span>
-                    <Bars3Icon aria-hidden="true" class="size-6"/>
-                </button>
-            </div>
+            <!--Mobile Menu icon-->
+            <button class="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
+                    type="button" @click="mobileMenuOpen = true">
+                <span class="sr-only">Open main menu</span>
+                <Menu
+                    :class="[
+                    'm-auto size-6 duration-200',
+                    { 'rotate-180 scale-0 opacity-0': mobileMenuOpen }
+                  ]"
+                />
+            </button>
+            <!--Nav Links-->
             <PopoverGroup class="hidden lg:flex lg:gap-x-12">
                 <Popover class="relative">
                     <PopoverButton class="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
@@ -60,6 +66,7 @@
                 <a class="text-sm/6 font-semibold text-gray-900" href="#">Marketplace</a>
                 <a class="text-sm/6 font-semibold text-gray-900" href="#">Company</a>
             </PopoverGroup>
+            <!--Nav Login/SignUp + Theme Toggle-->
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 <a class="text-sm/6 font-semibold text-gray-900" href="/login">Log in <span
                     aria-hidden="true">&rarr;</span></a>
@@ -132,7 +139,6 @@ import {
 } from '@headlessui/vue'
 import {
     ArrowPathIcon,
-    Bars3Icon,
     ChartPieIcon,
     CursorArrowRaysIcon,
     FingerPrintIcon,
@@ -140,6 +146,7 @@ import {
     XMarkIcon,
 } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/vue/20/solid'
+import { Menu } from "lucide-vue-next";
 
 const products = [
     { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
