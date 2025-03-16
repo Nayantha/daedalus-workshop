@@ -44,10 +44,10 @@
                     <div
                         :class="[
                     'bg-white dark:bg-zinc-900 lg:dark:bg-transparent',
-                    'mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none',
-                    { 'block lg:flex': isMobileMenuOpen },
-                    { 'hidden': !isMobileMenuOpen },
-                    'lg:flex'
+              'mb-6 w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none',
+              { 'block': isMobileMenuOpen },
+              { 'hidden': !isMobileMenuOpen },
+              'lg:flex'
                   ]"
                     >
                         <div class="lg:pr-4">
