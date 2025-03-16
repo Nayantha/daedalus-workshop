@@ -14,7 +14,7 @@
             </div>
 
             <!-- Carousel controls -->
-            <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+            <div class="absolute flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
                 <button v-for="(_, i) in images" :key="`dot-${i}`"
                         :class="{ 'bg-white': activeSlide === i, 'bg-gray-500': activeSlide !== i }"
                         class="w-3 h-3 rounded-full"
@@ -24,7 +24,7 @@
             </div>
 
             <!-- Carousel navigation buttons -->
-            <button class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            <button class="absolute top-0 left-0 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     type="button" @click="prevSlide">
         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
           <svg aria-hidden="true" class="w-4 h-4 text-white" fill="none" viewBox="0 0 6 10"
@@ -34,7 +34,7 @@
           </svg>
         </span>
             </button>
-            <button class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            <button class="absolute top-0 right-0 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                     type="button" @click="nextSlide">
         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
           <svg aria-hidden="true" class="w-4 h-4 text-white" fill="none" viewBox="0 0 6 10"
