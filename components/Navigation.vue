@@ -1,7 +1,7 @@
 <template>
     <header>
         <nav :class="[
-              'fixed z-20 w-full border-b border-dashed bg-white backdrop-blur md:relative dark:bg-zinc-950/50 lg:dark:bg-black',
+              'fixed z-20 w-full border-b border-dashed bg-white backdrop-blur md:relative dark:bg-black',
               { 'active': mobileMenuOpen }
             ]"
         >
