@@ -63,7 +63,8 @@
                             <Button as="router-link" class="dark:text-white" size="sm" to="/login" variant="outline">
                                 Login
                             </Button>
-                            <Button as="router-link" class="dark:text-white" size="sm" to="/register">
+                            <Button as="router-link" class="dark:text-white dark:shadow-slate-600" size="sm"
+                                    to="/register">
                                 Sign Up
                             </Button>
                             <ThemeToggleBotton/>
