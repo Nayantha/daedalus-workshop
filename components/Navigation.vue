@@ -23,7 +23,7 @@
                             :aria-label="isMobileMenuOpen ? 'Close Menu' : 'Open Menu'"
                             class="lg:hidden dark:text-white dark:shadow-transparent"
                             variant="ghost"
-                            @click="isMobileMenuOpen = !isMobileMenuOpen"
+                            @click="toggleMenu"
                         >
                             <Menu
                                 :class="[
@@ -45,7 +45,9 @@
                         :class="[
                     'bg-white dark:bg-zinc-900 lg:dark:bg-transparent',
                     'mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none',
-                    { 'block lg:flex': isMobileMenuOpen }
+                    { 'block lg:flex': isMobileMenuOpen },
+                    { 'hidden': !isMobileMenuOpen },
+                    'lg:flex'
                   ]"
                     >
                         <div class="lg:pr-4">
@@ -91,5 +93,45 @@ const products = [
     { name: 'Automations', href: '#' },
 ]
 
-const isMobileMenuOpen = ref(false)
+const isMobileMenuOpen = ref(false);
+
+const handleClickOutside = (event) => {
+    const nav = document.querySelector('nav');
+    if (isMobileMenuOpen.value && nav && !nav.contains(event.target)) {
+        isMobileMenuOpen.value = false;
+    }
+};
+
+// Close mobile menu when window resizes to desktop size
+const handleResize = () => {
+    if (window.innerWidth >= 1024 && isMobileMenuOpen.value) {
+        isMobileMenuOpen.value = false;
+    }
+};
+
+const toggleMenu = () => {
+    isMobileMenuOpen.value = !isMobileMenuOpen.value;
+    if (isMobileMenuOpen.value) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+};
+
+const closeMenu = () => {
+    isMobileMenuOpen.value = false;
+    document.body.style.overflow = '';
+};
+
+onMounted(() => {
+    document.addEventListener('click', handleClickOutside);
+    window.addEventListener('resize', handleResize);
+});
+
+onBeforeUnmount(() => {
+    document.removeEventListener('click', handleClickOutside);
+    window.removeEventListener('resize', handleResize);
+    document.body.style.overflow = ''; // Reset overflow when component unmounts
+});
+
 </script>
