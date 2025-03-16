@@ -2,7 +2,7 @@
     <header>
         <nav :class="[
               'fixed z-20 w-full border-b border-dashed bg-white backdrop-blur md:relative dark:bg-black',
-              { 'active': mobileMenuOpen }
+              { 'active': isMobileMenuOpen }
             ]"
         >
             <div class="m-auto max-w-5xl px-6">
@@ -20,22 +20,22 @@
 
                         <!-- Mobile Menu Toggle Button -->
                         <Button
-                            :aria-label="mobileMenuOpen ? 'Close Menu' : 'Open Menu'"
+                            :aria-label="isMobileMenuOpen ? 'Close Menu' : 'Open Menu'"
                             class="lg:hidden dark:text-white dark:shadow-transparent"
                             variant="ghost"
-                            @click="mobileMenuOpen = !mobileMenuOpen"
+                            @click="isMobileMenuOpen = !isMobileMenuOpen"
                         >
                             <Menu
                                 :class="[
                         'm-auto size-6 duration-200 dark:text-white',
-                        { 'rotate-180 scale-0 opacity-0': mobileMenuOpen }
+                        { 'rotate-180 scale-0 opacity-0': isMobileMenuOpen }
                       ]"
                             />
                             <X
                                 :class="[
                         'absolute m-auto size-6 duration-200',
-                        { 'rotate-0 scale-100 opacity-100': mobileMenuOpen },
-                        { '-rotate-180 scale-0 opacity-0': !mobileMenuOpen }
+                        { 'rotate-0 scale-100 opacity-100': isMobileMenuOpen },
+                        { '-rotate-180 scale-0 opacity-0': !isMobileMenuOpen }
                       ]"
                             />
                         </Button>
@@ -45,7 +45,7 @@
                         :class="[
                     'bg-white dark:bg-zinc-900 lg:dark:bg-transparent',
                     'mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none',
-                    { 'block lg:flex': mobileMenuOpen }
+                    { 'block lg:flex': isMobileMenuOpen }
                   ]"
                     >
                         <div class="lg:pr-4">
@@ -91,5 +91,5 @@ const products = [
     { name: 'Automations', href: '#' },
 ]
 
-const mobileMenuOpen = ref(false)
+const isMobileMenuOpen = ref(false)
 </script>
