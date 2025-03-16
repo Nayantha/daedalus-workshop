@@ -17,25 +17,26 @@
                             <Logo class="text-zinc-900 dark:text-white"/>
                         </router-link>
                         <!--mobile menu icon-->
-                        <button
-                            aria-label="Toggle Menu"
-                            class="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
-                            @click="mobileMenuOpen = !mobileMenuOpen"
+                        <Button
+                                aria-label="Toggle Menu"
+                                class="lg:hidden dark:text-white"
+                                variant="default"
+                                @click="mobileMenuOpen = !mobileMenuOpen"
                         >
                             <Menu
-                                :class="[
-                        'm-auto size-6 duration-200',
+                                    :class="[
+                        'm-auto size-6 duration-200 dark:text-white',
                         { 'rotate-180 scale-0 opacity-0': mobileMenuOpen }
                       ]"
                             />
                             <X
-                                :class="[
-                        'absolute inset-0 m-auto size-6 duration-200',
+                                    :class="[
+                        'absolute m-auto size-6 duration-200',
                         { 'rotate-0 scale-100 opacity-100': mobileMenuOpen },
                         { '-rotate-180 scale-0 opacity-0': !mobileMenuOpen }
                       ]"
                             />
-                        </button>
+                        </Button>
                     </div>
                     <!--nav links-->
                     <div
