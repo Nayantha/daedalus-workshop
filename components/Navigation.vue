@@ -8,7 +8,8 @@
             <div class="m-auto max-w-5xl px-6">
                 <div class="flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
                     <div class="flex w-full justify-between lg:w-auto">
-                        <!--logo-->
+
+                        <!-- Logo -->
                         <router-link
                             aria-label="home"
                             class="flex items-center space-x-2"
@@ -16,21 +17,22 @@
                         >
                             <Logo class="text-zinc-900 dark:text-white"/>
                         </router-link>
-                        <!--mobile menu icon-->
+
+                        <!-- Mobile Menu Toggle Button -->
                         <Button
-                                aria-label="Toggle Menu"
-                                class="lg:hidden dark:text-white"
-                                variant="default"
-                                @click="mobileMenuOpen = !mobileMenuOpen"
+                            :aria-label="mobileMenuOpen ? 'Close Menu' : 'Open Menu'"
+                            class="lg:hidden dark:text-white dark:shadow-transparent"
+                            variant="ghost"
+                            @click="mobileMenuOpen = !mobileMenuOpen"
                         >
                             <Menu
-                                    :class="[
+                                :class="[
                         'm-auto size-6 duration-200 dark:text-white',
                         { 'rotate-180 scale-0 opacity-0': mobileMenuOpen }
                       ]"
                             />
                             <X
-                                    :class="[
+                                :class="[
                         'absolute m-auto size-6 duration-200',
                         { 'rotate-0 scale-100 opacity-100': mobileMenuOpen },
                         { '-rotate-180 scale-0 opacity-0': !mobileMenuOpen }
